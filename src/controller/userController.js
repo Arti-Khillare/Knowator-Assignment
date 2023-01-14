@@ -143,9 +143,17 @@ const loginUser = async function (req, res) {
       }
     );
     res.setHeader("Authorization", token);
+    const loginData = {
+      userId: User._id,
+      token: token,
+    };
     res
       .status(200)
-      .send({ status: true, message: "User login SuccesFull", data: token });
+      .send({
+        status: true,
+        message: "User login SuccesFull",
+        data: loginData,
+      });
   } catch (error) {
     return res.status(500).send({ Status: false, message: error.message });
   }
